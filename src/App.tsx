@@ -8,22 +8,38 @@ let isStudent: boolean;
 let hobbies: string[];
 let role: [number, string]
 
-let printName: (name: string) => void; //passes a string, returns VOID (because it's just console logging)
+/** TYPESCRIPT BASICS NOTES
+// let printName: (name: string) => void; //passes a string, returns VOID (because it's just console logging)
+let printName: (name: string) => never; //passes a string, does not return anything -i don't know how tf you're supposed to make this thing DO anything though...what's the format for the content?!?
 
 // function printName(name:string|number){
 //   console.log(name)
 // }
 
-// type Person={
+// type Person = { //type can be extended in declaration with &
 //   name:string;
 //   age?:number;
 // }
+// type Guy = Person & {
+//    profession: string;
+//}
+
+interface Person { //
+  name:string;
+  age?:number;
+}
+
+interface Guy extends Person { 
+  profession: string;
+}
 
 // let person: Person = {
 //   name: "dave"
 // }
 
 // let lotsofpeople:Person[];
+*/
+
 
 
 function App() {
