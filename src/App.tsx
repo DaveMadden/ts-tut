@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import './App.css';
+import InputField from './components/InputField';
 
 let name: string;
 let age: number | string; //number OR string
@@ -42,10 +43,11 @@ interface Guy extends Person {
 
 
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      hello world
+      <span className="heading">Taskify</span>
+      <InputField />
     </div>
   );
 }
