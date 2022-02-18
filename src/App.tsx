@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import InputField from './components/InputField';
+import { TodoList } from './components/TodoList';
 import { Todo } from './model';
 
 let name: string;
@@ -53,14 +54,14 @@ const App: React.FC = () => {
     e.preventDefault() //stops page refresh that comes as a default
     if (todo){
       let addThis: Todo = {id:Date.now(), todo: todo, isDone: false}
-      console.log(addThis)
+      // console.log(addThis)
       setTodos([...todos, addThis]);
       setTodo("");
     }
   }
   //had to move these outside because the declaration/execution lag was f-ing me up
-  console.log(todos)
-  console.log("should be blank: ", todo)
+  // console.log(todos)
+  // console.log("should be blank: ", todo)
 
   return (
     <div className="App">
@@ -71,9 +72,12 @@ const App: React.FC = () => {
         handleAdd={handleAdd}
       />
       {/**TODOLIST */}
-      {todos.map((t)=>(
+      <TodoList
+        todos={todos}
+        setTodos={setTodos}/>
+      {/* {todos.map((t)=>(
         <li>{t.todo}</li>
-      ))}
+      ))} */}
     </div>
   );
 }

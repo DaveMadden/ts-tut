@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
+import React, { useRef } from 'react'
 import './styles.css'
 
 
@@ -11,15 +11,18 @@ interface Props {
 
 const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd}) => { //instead of the <Props> could also put ": Props" after the curly braces in the param parens
 
-    // console.log(todo)
+    const inputRef = useRef<HTMLInputElement>(null) //this has something to do with re moving focus from the input on submit?
+
 
     return (
         <form className="input"
             onSubmit={(e) => {
                 handleAdd(e)
+                inputRef.current?.blur()
             }}
             >
             <input type="text"
+                ref={inputRef}
                 placeholder="type something"
                 className="input__box"
                 value={todo}
