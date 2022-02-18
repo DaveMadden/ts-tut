@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import InputField from './components/InputField';
+import { Todo } from './model';
 
 let name: string;
 let age: number | string; //number OR string
@@ -46,15 +47,33 @@ interface Guy extends Person {
 const App: React.FC = () => {
 
   const [todo, setTodo] = useState<string>("")
+  const [todos, setTodos] = useState<Todo[]>([]) //type is array of Todos. Todo defined in the model from model.ts
 
+  const handleAdd = (e:React.FormEvent) => {
+    e.preventDefault() //stops page refresh that comes as a default
+    if (todo){
+      let addThis: Todo = {id:Date.now(), todo: todo, isDone: false}
+      console.log(addThis)
+      setTodos([...todos, addThis]);
+      setTodo("");
+    }
+  }
+  //had to move these outside because the declaration/execution lag was f-ing me up
+  console.log(todos)
+  console.log("should be blank: ", todo)
 
   return (
     <div className="App">
-      <span className="heading">Taskify</span>
+      <span className="heading">Tasks</span>
       <InputField
         todo={todo}
         setTodo={setTodo}
+        handleAdd={handleAdd}
       />
+      {/**TODOLIST */}
+      {todos.map((t)=>(
+        <li>{t.todo}</li>
+      ))}
     </div>
   );
 }
